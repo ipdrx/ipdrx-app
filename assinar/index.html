@@ -90,7 +90,7 @@ function desenhar() {
   $("lista").innerHTML = vis.map((p) => `
     <div class="plano ${p.id === escolhido ? "on" : ""}" data-id="${p.id}">
       <h3>${p.nome}<span class="preco">${brl(p.preco_mes)}<small>/mês</small></span></h3>
-      <p>${(p.modulos || []).map((m) => NOMES[m] || m).join(" · ")}</p>
+      <p>${["orc","age","cx","sim"].filter((m) => (p.modulos || []).includes(m)).map((m) => NOMES[m]).join(" · ")}</p>
       ${p.ciclo === "anual" ? `<div class="total">${brl(p.preco_mes * 12)} por ano · 12x de ${brl(p.preco_mes)} sem juros</div>` : `<div class="total">Cobrança automática todo mês</div>`}
     </div>`).join("");
   document.querySelectorAll(".plano").forEach((el) => (el.onclick = () => { escolhido = el.dataset.id; desenhar(); }));
